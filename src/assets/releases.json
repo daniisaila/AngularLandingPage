@@ -1,0 +1,40 @@
+{
+   "jfrogArtefactPath":"JfrogPath ",
+   "ddriveArtefactPath":"DDrive path",
+   "releasedVersionsList":[
+      {
+         "versionNumber":"3.10",
+         "releaseNotesEntriesForVersion":[
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA second release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+         ]
+      },
+      {
+         "versionNumber":"3.11",
+         "releaseNotesEntriesForVersion":[
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA second release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+         ]
+      }
+   ]
+}
