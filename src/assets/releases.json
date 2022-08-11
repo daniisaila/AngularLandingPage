@@ -3,7 +3,41 @@
    "ddriveArtefactPath":"DDrive path",
    "releasedVersionsList":[
       {
-         "versionNumber":"3.10",
+         "versionNumber":"3.9.2",
+         "releaseNotesEntriesForVersion":[
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA second release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+         ]
+      },
+      {
+         "versionNumber":"3.09.1",
+         "releaseNotesEntriesForVersion":[
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA second release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+         ]
+      },
+      {
+         "versionNumber":"3.12",
          "releaseNotesEntriesForVersion":[
             {
                "affectedPerspective":"TARA",
@@ -21,6 +55,40 @@
       },
       {
          "versionNumber":"3.11",
+         "releaseNotesEntriesForVersion":[
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA second release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+         ]
+      },
+      {
+         "versionNumber":"3.11.01",
+         "releaseNotesEntriesForVersion":[
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA second release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+         ]
+      },
+      {
+         "versionNumber":"3.11.01.1",
          "releaseNotesEntriesForVersion":[
             {
                "affectedPerspective":"TARA",
