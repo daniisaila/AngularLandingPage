@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import releases from 'src/assets/releases.json'
-import { Version } from './version.types';
+import { Version, VersionDisplay, PerspectiveComments } from './version.types';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, Subject } from 'rxjs';
 
@@ -9,13 +9,14 @@ export class ReleaseConvertorService
 {
     releaseVersions!: Version[];
     _jsonURL='src/assets/releases.json';
+    releasesDisplay!: VersionDisplay[];
 
-    private _VersionsSubject = new Subject<Version[]>();
+    private _VersionsSubject = new Subject<VersionDisplay[]>();
     VersionsSubject$ = this._VersionsSubject.asObservable();
 
     constructor(private http:HttpClient)
     {
-
+        this.releasesDisplay = [];
     }
 
     public async getData()
@@ -28,6 +29,7 @@ export class ReleaseConvertorService
             let releasesString:string = JSON.stringify(data);
             let jsonfile = JSON.parse(releasesString)
             this.releaseVersions = jsonfile.releasedVersionsList;
+
     
             const compareSemanticVersions = (va: Version, vb: Version) => {
  
@@ -62,15 +64,73 @@ export class ReleaseConvertorService
                 return a1.length - b1.length;
             };
     
-            const versionss = [ '1.1.0', '5.0.0', '0.2.0', '2.4.1', '1.02.1' ];
             const sorted = this.releaseVersions.sort(compareSemanticVersions);
             sorted.reverse();
-            console.log(sorted);
 
-            this._VersionsSubject.next(this.releaseVersions);
-            console.log(this.releaseVersions);
+            await this.releaseVersionToVersionDisplay();
+     
+
+
+            console.log(this.releasesDisplay);
 
         });
+    }
+
+    private async releaseVersionToVersionDisplay()
+    {
+        // parse Versions
+        for(var indexVersion in this.releaseVersions)
+        {
+            
+            this.releasesDisplay.push({versionNumber:this.releaseVersions[indexVersion].versionNumber,perspectivesComments:[]})
+
+            //this.releasesDisplay[indexVersion].versionNumber = this.releaseVersions[indexVersion].versionNumber;
+
+            // parsee releaseNotesEntriesForVersion
+            for(var indexPerspective in this.releaseVersions[indexVersion].releaseNotesEntriesForVersion)
+            {
+                // add perspectives to releasesDisplay
+                //this.releasesDisplay[indexVersion].perspectivesComments.push({affectedPerspective:'',affectedPerspectivecomments:[]})
+
+                //console.log(this.releaseVersions[indexVersion].releaseNotesEntriesForVersion.length)
+                const perspectiveExists = this.releasesDisplay[indexVersion].perspectivesComments.findIndex(affectedPerspective => 
+                                affectedPerspective.affectedPerspective ===
+                               this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].affectedPerspective);
+                console.log(perspectiveExists);
+                if (perspectiveExists === -1) {
+                    var perspective:PerspectiveComments = {
+                        affectedPerspective: this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].affectedPerspective,
+                        affectedPerspectivecomments: []
+                    };
+                    perspective.affectedPerspectivecomments.push(this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].releaseNotesComment)
+                    console.log(perspective);
+                    this.releasesDisplay[indexVersion].perspectivesComments.push(perspective);
+
+                }
+                else
+                {
+                    this.releasesDisplay[indexVersion].perspectivesComments[perspectiveExists].affectedPerspectivecomments.push(this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].releaseNotesComment)
+                    //console.log("pop");
+                    //this.releasesDisplay[indexVersion].perspectivesComments.pop();
+                }      
+            }
+
+            this.releasesDisplay[indexVersion].perspectivesComments.sort(function (a, b) {
+                if (a.affectedPerspective < b.affectedPerspective) {
+                  return -1;
+                }
+                if (a.affectedPerspective > b.affectedPerspective) {
+                  return 1;
+                }
+                return 0;
+              });
+            
+            
+        }
+        console.log("aiciii");
+        console.log(this.releasesDisplay);
+        this._VersionsSubject.next(this.releasesDisplay);
+        //console.log(this.)
     }
 
 }

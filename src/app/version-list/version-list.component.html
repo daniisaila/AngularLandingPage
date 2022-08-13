@@ -1,36 +1,36 @@
 <mat-drawer-container class="example-container h-full bg-[#4632e1]  rounded-md" autosize>
-   
     <mat-drawer #drawer class="example-sidenav rounded-b-lg bg-white shadow-sm mb-1 pb-10 mr-2" mode="side" [opened]="sidenavShow">
- 
-        <div class="px-16 m-4">
-            <p class="px-6 py-1 text-center font-extralight text-lg">RELEASES</p>  
-        </div>
-      
-        <div class="flex flex-col space-y-2 overflow-scroll">
-            <button class="shadow-md font-extralight text-sm hover:scale-150 hover:bg-[#4632e1] hover:text-white"  mat-button *ngFor="let version of releaseVersions; let i = index" (click)="selectVersion(i)" >{{version.versionNumber}}</button>
-        </div>
- 
-        
-    </mat-drawer>
-  
-    <div class="example-sidenav-content p-4 rounded-lg ml-2 bg-white  shadow-xl">
-      <button type="button" mat-button [@rotatedState]='rotateState' (click)="drawerToggle()">
-        <mat-icon>folder</mat-icon> 
-      </button>
+    <div class="px-16 m-4">
+       <p class="px-6 py-1 text-center font-extralight text-lg">RELEASES</p>
     </div>
-
-
+    <div class="flex flex-col space-y-2 overflow-scroll">
+       <button class="shadow-lg font-extralight text-sm hover:scale-150 hover:bg-[#4632e1] hover:text-white"  mat-button *ngFor="let version of releasesDisplay; let i = index" (click)="selectVersion(i)" >{{version.versionNumber}}</button>
+    </div>
+    </mat-drawer>
+    <div class="example-sidenav-content p-4 rounded-lg ml-2 bg-white  shadow-xl">
+       <button type="button" mat-button [@rotatedState]='rotateState' (click)="drawerToggle()">
+       <mat-icon>folder</mat-icon>
+       </button>
+    </div>
     <mat-card class="example-card h-5/6 bg-white ml-2 mt-10 rounded-b-xl shadow-2xl" @fadeInOut *ngIf="isShown" (@fadeInOut.done)="onAnimationDone($event)">
-        <mat-card-title class="text-center font-extralight text-lg">Version Number: {{selectedVersion.versionNumber}}</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        <mat-card-content>
-          <p>This card indeterminates progress bar.</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
+    <mat-card-title class="text-center font-extralight text-lg text-[#4632e1]"> Version Number: {{selectedVersionDisplay.versionNumber}} </mat-card-title>
+    <mat-card-content class="h-5/6 flex">
+       <div class="flex h-5/6 w-full space-x-2 mt-6">
+          <div class="felx flex-col w-1/5">
+             <div>
+                <p class="text-center font-extralight text-md"> PERSPECTIVES </p>
+             </div>
+             <div class=" max-h-full flex flex-col space-y-2 overflow-scroll rounded-md pb-4">
+                <button class="shadow-md font-extralight text-xs hover:bg-[#4632e1] hover:scale-110 hover:text-white"  mat-button *ngFor="let perspective of selectedVersionDisplay.perspectivesComments; let i = index" (click)="selectPerspective(i)" >{{perspective.affectedPerspective}}</button>
+             </div>
+          </div>
+          <div class="felx flex-col w-full h-full mt-8">
+             <p class="font-extralight py-2 pl-8 text-[#4632e1]"> Perspective: {{selectedPerspective.affectedPerspective}}</p>
+             <div class="h-full w-full rounded-md overflow-scroll">
+                <p class="font-extralight px-8 py-2 shadow-lg hover:bg-[#4632e1] hover:text-white border-l-2 border-[#4632e1]" *ngFor="let comment of selectedPerspective.affectedPerspectivecomments"> {{comment}}</p>
+             </div>
+          </div>
+       </div>
+    </mat-card-content>
     </mat-card>
-
-  
-  </mat-drawer-container>
+ </mat-drawer-container>

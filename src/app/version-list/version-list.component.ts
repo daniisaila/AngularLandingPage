@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ReleaseConvertorService } from './version-list-convertor/releases-convertor.service'
-import { Version } from './version-list-convertor/version.types';
+import { Version, VersionDisplay, PerspectiveComments } from './version-list-convertor/version.types';
 import {
     trigger,
     style,
@@ -27,7 +27,6 @@ import {
     transition('void => *', [style({ opacity: 0 }), animate('0.5s ease-out')]),
     transition('* => void', [animate('0.1s ease-out'), style({ opacity: 0 })]),
   ]);
-  // -- animation triggers --
 
 @Component({
     selector     : 'version-list',
@@ -39,7 +38,9 @@ import {
 export class VersionListComponent implements OnInit, AfterViewInit{
 
     releaseVersions!: Version[];
-    selectedVersion!:Version;
+    selectedVersionDisplay!:VersionDisplay;
+    selectedPerspective!:PerspectiveComments;
+    releasesDisplay!: VersionDisplay[];
 
     // -- animation controls --
     isShown:boolean = true;
@@ -66,17 +67,24 @@ export class VersionListComponent implements OnInit, AfterViewInit{
     async ngOnInit(): Promise<void>{
 
         this.versionConverterService.VersionsSubject$.subscribe(async (message) => {
-            this.releaseVersions = message;
-            this.selectedVersion = this.releaseVersions[0];
+            this.releasesDisplay = message;
+            this.selectedVersionDisplay = this.releasesDisplay[0];
+            this.selectedPerspective = this.releasesDisplay[0].perspectivesComments[0];
         });
 
 	}
 
     public selectVersion(index:number)
     {
-        this.selectedVersion = this.releaseVersions[index];
+        this.selectedVersionDisplay = this.releasesDisplay[index];
         this.isShown = !this.isShown;
-        console.log(this.selectedVersion);
+        this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[0];
+        console.log(this.selectedVersionDisplay);
+    }
+
+    public selectPerspective(index:number)
+    {
+        this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[index];
     }
 
 

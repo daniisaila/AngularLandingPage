@@ -42,14 +42,6 @@
             {
                "affectedPerspective":"TARA",
                "releaseNotesComment":"TARA first release comment"
-            },
-            {
-               "affectedPerspective":"TARA",
-               "releaseNotesComment":"TARA second release comment"
-            },
-            {
-               "affectedPerspective":"ACCESS MANAGER",
-               "releaseNotesComment":"ACCESS MANAGER first release comment"
             }
          ]
       },
@@ -65,7 +57,7 @@
                "releaseNotesComment":"TARA second release comment"
             },
             {
-               "affectedPerspective":"ACCESS MANAGER",
+               "affectedPerspective":"ACCESS MANAGER CEVA CEVA",
                "releaseNotesComment":"ACCESS MANAGER first release comment"
             }
          ]
@@ -74,11 +66,11 @@
          "versionNumber":"3.11.01",
          "releaseNotesEntriesForVersion":[
             {
-               "affectedPerspective":"TARA",
+               "affectedPerspective":"CEVA",
                "releaseNotesComment":"TARA first release comment"
             },
             {
-               "affectedPerspective":"TARA",
+               "affectedPerspective":"CEVA",
                "releaseNotesComment":"TARA second release comment"
             },
             {
@@ -91,6 +83,10 @@
          "versionNumber":"3.11.01.1",
          "releaseNotesEntriesForVersion":[
             {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
                "affectedPerspective":"TARA",
                "releaseNotesComment":"TARA first release comment"
             },
@@ -99,7 +95,65 @@
                "releaseNotesComment":"TARA second release comment"
             },
             {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA third release comment"
+            },
+            {
                "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+            ,
+            {
+               "affectedPerspective":"ACCESS",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ALTCEVA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"TARA forth release comment"
+            },
+            {
+               "affectedPerspective":"TARA",
+               "releaseNotesComment":"ALTCEVA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment TARA first release comment"
+            },
+            {
+               "affectedPerspective":"ACCESS MANAGER",
+               "releaseNotesComment":"ACCESS MANAGER first release comment"
+            }
+            ,
+            {
+               "affectedPerspective":"ACCESS",
                "releaseNotesComment":"ACCESS MANAGER first release comment"
             }
          ]
