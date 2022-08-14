@@ -40,9 +40,62 @@
          "versionNumber":"3.12",
          "releaseNotesEntriesForVersion":[
             {
-               "affectedPerspective":"TARA",
-               "releaseNotesComment":"TARA first release comment"
+               "affectedPerspective":"VERSIUNI",
+               "releaseNotesComment":"Versiunile sunt ordonate si afisate descrescator !"
+            },
+            {
+               "affectedPerspective":"PERSPECTIVE",
+               "releaseNotesComment":"Perspectivele sunt afisate alfabetic !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 1 lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 2 lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 3 scurt !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 4 lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 5 scurt !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 6 lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA1",
+               "releaseNotesComment":"xPERSPECTIVA1 comentariu 47lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung lung !"
+            },
+            {
+               "affectedPerspective":"NOTES",
+               "releaseNotesComment":"NOTES-urile sunt afisate asa cum apar in document !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA2",
+               "releaseNotesComment":"xPERSPECTIVA2 comentariu 1 !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA3",
+               "releaseNotesComment":"xPERSPECTIVA3 comentariu 1 !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA5",
+               "releaseNotesComment":"xPERSPECTIVA5 comentariu 1 !"
+            },
+            {
+               "affectedPerspective":"xPERSPECTIVA4",
+               "releaseNotesComment":"xPERSPECTIVA4 comentariu 1 !"
             }
+            
          ]
       },
       {
@@ -155,6 +208,26 @@
             {
                "affectedPerspective":"ACCESS",
                "releaseNotesComment":"ACCESS MANAGER first release comment"
+            },
+            {
+               "affectedPerspective":"PERSP1",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"PERSP3",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"PERSP2",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"PERSP4",
+               "releaseNotesComment":"TARA first release comment"
+            },
+            {
+               "affectedPerspective":"PERSP5",
+               "releaseNotesComment":"TARA first release comment"
             }
          ]
       }
