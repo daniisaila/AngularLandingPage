@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ReleaseConvertorService } from './version-list-convertor/releases-convertor.service'
-import { Version, VersionDisplay, PerspectiveComments } from './version-list-convertor/version.types';
+import { Version, VersionDisplay, PerspectiveComments } from '../releases-notes/version-notes-service/version.types';
 import {
     trigger,
     style,
@@ -29,18 +28,15 @@ import {
   ]);
 
 @Component({
-    selector     : 'version-list',
-    templateUrl  : './version-list.component.html',
-    providers: [ReleaseConvertorService],
+    selector     : 'app-menu',
+    templateUrl  : './app-menu.component.html',
     animations: [fadeInOut,rotate],
     encapsulation: ViewEncapsulation.None
 })
-export class VersionListComponent implements OnInit, AfterViewInit{
+export class AppMenu implements OnInit{
 
-    releaseVersions!: Version[];
-    selectedVersionDisplay!:VersionDisplay;
-    selectedPerspective!:PerspectiveComments;
-    releasesDisplay!: VersionDisplay[];
+    pageTabs:string[] = ["Releases Notes","To be contiuned.."];
+    currentTab:string = this.pageTabs[0];
 
     // -- animation controls --
     isShown:boolean = true;
@@ -48,10 +44,8 @@ export class VersionListComponent implements OnInit, AfterViewInit{
     rotateState: string = 'default';
     // -- animation controls --
 
-    constructor(private versionConverterService:ReleaseConvertorService)
+    constructor()
     {
-        this.versionConverterService.getData();
-        
     }
 
     drawerToggle()
@@ -60,32 +54,16 @@ export class VersionListComponent implements OnInit, AfterViewInit{
         this.rotate();
     }
 
-    ngAfterViewInit(): void {
-        console.log(this.releaseVersions);
+    public selectTab(index:number)
+    {
+        this.currentTab = this.pageTabs[index];
     }
+
 
     async ngOnInit(): Promise<void>{
 
-        this.versionConverterService.VersionsSubject$.subscribe(async (message) => {
-            this.releasesDisplay = message;
-            this.selectedVersionDisplay = this.releasesDisplay[0];
-            this.selectedPerspective = this.releasesDisplay[0].perspectivesComments[0];
-        });
 
 	}
-
-    public selectVersion(index:number)
-    {
-        this.selectedVersionDisplay = this.releasesDisplay[index];
-        this.isShown = !this.isShown;
-        this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[0];
-        console.log(this.selectedVersionDisplay);
-    }
-
-    public selectPerspective(index:number)
-    {
-        this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[index];
-    }
 
 
     // -- animation methods --

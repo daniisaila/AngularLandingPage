@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'
 
-import { VersionListModule } from './version-list/version-list.module'
+import { AppMenuModule } from './menu/app-menu.module'
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { VersionListModule } from './version-list/version-list.module'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    VersionListModule,
+    AppMenuModule,
     HttpClientModule
   ],
   providers: [],

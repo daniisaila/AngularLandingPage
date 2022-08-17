@@ -2,24 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {VersionListComponent} from './version-list.component'
+import {AppMenu} from './app-menu.component'
 import {MatCardModule} from '@angular/material/card';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {ReleasesNotesModule} from '../releases-notes/releases-notes-module/releases-notes.module'
 
 
 @NgModule({
     declarations: [
-        VersionListComponent
+        AppMenu
     ],
     imports: [
 	CommonModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ReleasesNotesModule
     ],
-	exports: [VersionListComponent]
+	exports: [AppMenu]
 })
-export class VersionListModule
+export class AppMenuModule
 {
 }
