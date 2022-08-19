@@ -1,121 +1,105 @@
 import { Injectable } from '@angular/core';
 import releases from 'src/assets/releases.json'
-import { Version, VersionDisplay, PerspectiveComments } from './version.types';
+import { Release, ReleaseDisplay, PerspectiveComments } from './version.types';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, Subject } from 'rxjs';
 
 @Injectable()
-export class ReleaseConvertorService
+export class ReleasesConvertorService
 {
-    releaseVersions!: Version[];
+    dataReleases!: Release[];
     _jsonURL='src/assets/releases.json';
-    releasesDisplay!: VersionDisplay[];
+    dataReleasesDisplay!: ReleaseDisplay[];
 
-    private _VersionsSubject = new Subject<VersionDisplay[]>();
+    private _VersionsSubject = new Subject<ReleaseDisplay[]>();
     VersionsSubject$ = this._VersionsSubject.asObservable();
 
     constructor(private http:HttpClient)
     {
-        this.releasesDisplay = [];
+        this.dataReleasesDisplay = [];
     }
 
-    public async getData()
+    public async getVersionNotesData()
     {
-
-            
+     
         await this.http.get("assets/releases.json").subscribe(async data =>{
             console.log(data);
 
-            let releasesString:string = JSON.stringify(data);
-            let jsonfile = JSON.parse(releasesString)
-            this.releaseVersions = jsonfile.releasedVersionsList;
+            let dataString:string = JSON.stringify(data);
+            let dataJSON = JSON.parse(dataString)
+            this.dataReleases = dataJSON.releasedVersionsList;
 
-    
-            const compareSemanticVersions = (va: Version, vb: Version) => {
- 
-                let a:string = va.versionNumber.toString();
-                let b:string = vb.versionNumber.toString();
-
-                // 1. Split the strings into their parts.
-                const a1 = a.split('.');
-                const b1 = b.split('.');
-                // 2. Contingency in case there's a 4th or 5th version
-                const len = Math.min(a1.length, b1.length);
-                // 3. Look through each version number and compare.
-
-                console.log(a1);
-                console.log(b1);
-
-                for (let i = 0; i < len; i++) {
-                
-                    const a2 = +a1[ i ] || 0;
-                    console.log(a2);
-                    const b2 = +b1[ i ] || 0;
-                    console.log(b2);
-                    
-                    if (a2 !== b2) {
-                        return a2 > b2 ? 1 : -1;        
-                    }
-                }
-                
-                // 4. We hit this if the all checked versions so far are equal
-                //
-                console.log("ceva: " + (b1.length - a1.length));
-                return a1.length - b1.length;
-            };
-    
-            const sorted = this.releaseVersions.sort(compareSemanticVersions);
-            sorted.reverse();
-
-            await this.releaseVersionToVersionDisplay();
+            this.sortReleases();
+            this.releasestoReleasesDisplay();
      
-
-
-            console.log(this.releasesDisplay);
-
         });
     }
 
-    private async releaseVersionToVersionDisplay()
+    private sortReleases():void
+    {
+        const compareSemanticVersions = (firstReleaseCompare: Release, secondReleaseCompare: Release):number => {
+ 
+            let firstReleaseVersion:string = firstReleaseCompare.versionNumber.toString();
+            let secondReleaseVersion:string = secondReleaseCompare.versionNumber.toString();
+
+            // 1. Split the strings into their parts.
+            const firstReleaseVersionSplitted = firstReleaseVersion.split('.');
+            const secondReleaseVersionSplitted = secondReleaseVersion.split('.');
+            // 2. Contingency in case there's a 4th or 5th version
+            const minimumVersionSplittedLength = Math.min(firstReleaseVersionSplitted.length, secondReleaseVersionSplitted.length);
+            // 3. Look through each version number and compare.
+
+            for (let i = 0; i < minimumVersionSplittedLength; i++) {
+            
+                const firstReleaseVersionValue = + firstReleaseVersionSplitted[ i ] || 0;
+                const secondReleaseVersionValue = + secondReleaseVersionSplitted[ i ] || 0;
+                
+                if (firstReleaseVersionValue !== secondReleaseVersionValue) {
+                    return firstReleaseVersionValue > secondReleaseVersionValue ? 1 : -1;        
+                }
+            }
+            
+            // 4. We hit this if the all checked versions so far are equal
+            return firstReleaseVersionSplitted.length - secondReleaseVersionSplitted.length;
+        };
+
+        const dataReleasesSorted = this.dataReleases.sort(compareSemanticVersions);
+        this.dataReleases = dataReleasesSorted.reverse();
+    }
+
+    private async releasestoReleasesDisplay()
     {
         // parse Versions
-        for(var indexVersion in this.releaseVersions)
+        for(var indexVersion in this.dataReleases)
         {
             
-            this.releasesDisplay.push({versionNumber:this.releaseVersions[indexVersion].versionNumber,perspectivesComments:[]})
-
-            //this.releasesDisplay[indexVersion].versionNumber = this.releaseVersions[indexVersion].versionNumber;
+            this.dataReleasesDisplay.push({versionNumber:this.dataReleases[indexVersion].versionNumber,perspectivesComments:[]})
 
             // parsee releaseNotesEntriesForVersion
-            for(var indexPerspective in this.releaseVersions[indexVersion].releaseNotesEntriesForVersion)
+            for(var indexPerspective in this.dataReleases[indexVersion].releaseNotesEntriesForVersion)
             {
                 // add perspectives to releasesDisplay
-                //this.releasesDisplay[indexVersion].perspectivesComments.push({affectedPerspective:'',affectedPerspectivecomments:[]})
-
-                //console.log(this.releaseVersions[indexVersion].releaseNotesEntriesForVersion.length)
-                const perspectiveExists = this.releasesDisplay[indexVersion].perspectivesComments.findIndex(affectedPerspective => 
+                const perspectiveExists = this.dataReleasesDisplay[indexVersion].perspectivesComments.findIndex(affectedPerspective => 
                                 affectedPerspective.affectedPerspective ===
-                               this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].affectedPerspective);
+                               this.dataReleases[indexVersion].releaseNotesEntriesForVersion[indexPerspective].affectedPerspective);
                 console.log(perspectiveExists);
                 if (perspectiveExists === -1) {
                     var perspective:PerspectiveComments = {
-                        affectedPerspective: this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].affectedPerspective,
+                        affectedPerspective: this.dataReleases[indexVersion].releaseNotesEntriesForVersion[indexPerspective].affectedPerspective,
                         affectedPerspectivecomments: []
                     };
-                    perspective.affectedPerspectivecomments.push(this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].releaseNotesComment)
+                    perspective.affectedPerspectivecomments.push(this.dataReleases[indexVersion].releaseNotesEntriesForVersion[indexPerspective].releaseNotesComment)
                     console.log(perspective);
-                    this.releasesDisplay[indexVersion].perspectivesComments.push(perspective);
+                    this.dataReleasesDisplay[indexVersion].perspectivesComments.push(perspective);
 
                 }
                 else
                 {
-                    this.releasesDisplay[indexVersion].perspectivesComments[perspectiveExists].affectedPerspectivecomments.push(this.releaseVersions[indexVersion].releaseNotesEntriesForVersion[indexPerspective].releaseNotesComment)
-                    //console.log("pop");
-                    //this.releasesDisplay[indexVersion].perspectivesComments.pop();
+                    this.dataReleasesDisplay[indexVersion].perspectivesComments[perspectiveExists].affectedPerspectivecomments.push(this.dataReleases[indexVersion].releaseNotesEntriesForVersion[indexPerspective].releaseNotesComment)
                 }      
             }
 
-            this.releasesDisplay[indexVersion].perspectivesComments.sort(function (a, b) {
+            this.dataReleasesDisplay[indexVersion].perspectivesComments.sort(function (a, b) {
                 if (a.affectedPerspective < b.affectedPerspective) {
                   return -1;
                 }
@@ -125,12 +109,9 @@ export class ReleaseConvertorService
                 return 0;
               });
             
-            
         }
-        console.log("aiciii");
-        console.log(this.releasesDisplay);
-        this._VersionsSubject.next(this.releasesDisplay);
-        //console.log(this.)
+
+        this._VersionsSubject.next(this.dataReleasesDisplay);
     }
 
 }

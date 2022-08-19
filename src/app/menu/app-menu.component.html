@@ -9,10 +9,10 @@
     </mat-drawer>
     <div class="example-sidenav-content p-4 rounded-lg ml-2 bg-[#e3e3e3]  shadow-xl flex justify-between">
        <button type="button" mat-button [@rotatedState]='rotateState' (click)="drawerToggle()">
-       <mat-icon>folder</mat-icon>
+       <mat-icon>menu</mat-icon>
        </button>
 
-       <!--<p class="font-extralight text-[#221a36] pr-4 text-xl">RELEASED VERSIONS LIST</p> -->
+       <p class="font-extralight text-[#221a36] pr-4 text-xl">{{currentTab}}</p> 
     </div>
     
     <div *ngIf="currentTab === 'Releases Notes'" class="">

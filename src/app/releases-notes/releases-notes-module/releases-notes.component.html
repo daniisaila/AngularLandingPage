@@ -5,7 +5,7 @@
         <div>
         <mat-form-field appearance="fill" class="">
             <mat-label>Version</mat-label>
-            <mat-select [(ngModel)]="selectedVersionDisplay" name="version" (ngModelChange)="viewToModelUpdate($event)">
+            <mat-select [(ngModel)]="selectedVersionDisplay" name="version" (ngModelChange)="selectVersion()">
               <mat-option *ngFor="let version of releasesDisplay" [value]="version">
                 {{version.versionNumber}}
               </mat-option>

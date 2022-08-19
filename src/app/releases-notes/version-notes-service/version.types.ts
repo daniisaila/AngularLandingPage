@@ -1,9 +1,9 @@
-export interface Version{
+export interface Release{
     versionNumber: number;
     releaseNotesEntriesForVersion: ReleaseNotesEntriesForVersion[];
 }
 
-export interface VersionDisplay
+export interface ReleaseDisplay
 {
     versionNumber: number;
     perspectivesComments: PerspectiveComments[];

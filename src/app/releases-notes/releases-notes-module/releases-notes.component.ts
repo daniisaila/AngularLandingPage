@@ -1,22 +1,22 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ReleaseConvertorService } from '../version-notes-service/releases-convertor.service'
-import { Version, VersionDisplay, PerspectiveComments } from '../version-notes-service/version.types';
+import { ReleasesConvertorService } from '../version-notes-service/releases-convertor.service'
+import { Release, ReleaseDisplay, PerspectiveComments } from '../version-notes-service/version.types';
 
 
 @Component({
     selector     : 'releases-notes',
     templateUrl  : './releases-notes.component.html',
-    providers: [ReleaseConvertorService],
+    providers: [ReleasesConvertorService],
     encapsulation: ViewEncapsulation.None
 })
 export class ReleasesNotesComponent implements OnInit{
 
-  selectedVersionDisplay!:VersionDisplay;
+  selectedVersionDisplay!:ReleaseDisplay;
   selectedPerspective!:PerspectiveComments;
-  releasesDisplay!: VersionDisplay[];
+  releasesDisplay!: ReleaseDisplay[];
 
-  constructor(private versionConverterService:ReleaseConvertorService){
-    this.versionConverterService.getData(); 
+  constructor(private versionConverterService:ReleasesConvertorService){
+    this.versionConverterService.getVersionNotesData(); 
   }  
 
 
@@ -30,19 +30,12 @@ export class ReleasesNotesComponent implements OnInit{
 
 }
 
-  public selectVersion(index:number)
-  {
-      this.selectedVersionDisplay = this.releasesDisplay[index];
-      this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[0];
-      console.log(this.selectedVersionDisplay);
-  }
-
   public selectPerspective(index:number):void
   {
       this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[index];
   }
 
-  public viewToModelUpdate(newValue:any):void
+  public selectVersion():void
   {
       this.selectedPerspective = this.selectedVersionDisplay.perspectivesComments[0];
   }

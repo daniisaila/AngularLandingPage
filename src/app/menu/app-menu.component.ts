@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Version, VersionDisplay, PerspectiveComments } from '../releases-notes/version-notes-service/version.types';
 import {
     trigger,
     style,
@@ -35,7 +34,7 @@ import {
 })
 export class AppMenu implements OnInit{
 
-    pageTabs:string[] = ["Releases Notes","To be contiuned.."];
+    pageTabs:string[] = ["Releases Notes","To be continued.."];
     currentTab:string = this.pageTabs[0];
 
     // -- animation controls --
@@ -48,26 +47,24 @@ export class AppMenu implements OnInit{
     {
     }
 
-    drawerToggle()
+    drawerToggle():void
     {
         this.sidenavShow = !this.sidenavShow;
         this.rotate();
     }
 
-    public selectTab(index:number)
+    public selectTab(index:number):void
     {
         this.currentTab = this.pageTabs[index];
     }
 
 
     async ngOnInit(): Promise<void>{
-
-
-	}
+	  }
 
 
     // -- animation methods --
-    rotate() {
+    rotate():void {
         this.rotateState = (this.rotateState === 'default' ? 'rotated' : 'default');
     }
 
@@ -76,14 +73,13 @@ export class AppMenu implements OnInit{
     }
 
 
-    onAnimationDone(event: any) {
+    onAnimationDone(event: any):void {
         console.log('onAnimationDone', event);
         if(this.isShown == false)
         {
             this.isShown = true;
         }
     }
-
      // -- animation methods --
 
 }
