@@ -1,10 +1,10 @@
 <mat-drawer-container class="example-container h-full bg-[#4632e1]  rounded-md" autosize>
-    <mat-drawer #drawer class="example-sidenav rounded-b-lg bg-[#e3e3e3] shadow-sm mb-1 pb-10 mr-2" mode="side" [opened]="sidenavShow">
+    <mat-drawer #drawer class="example-sidenav overflow-hidden rounded-b-lg bg-[#e3e3e3] shadow-sm mb-1 pb-10 mr-2" mode="side" [opened]="sidenavShow">
     <div class="px-16 m-4">
-       <p class="px-6 py-1 text-center font-extralight text-lg">TOOLCENTER</p>
+       <p class="px-6 py-1 text-center font-light text-lg">TOOLCENTER</p>
     </div>
     <div class="flex flex-col space-y-2 px-2">
-       <button class="shadow-lg font-extralight text-white text-sm hover:scale-125 bg-[#221a36] hover:bg-[#4632e1] hover:text-white"  mat-button *ngFor="let tab of pageTabs; let i = index" (click)="selectTab(i)" >{{tab}}</button>
+       <button class="shadow-lg font-light text-white text-sm hover:scale-105 bg-[#221a36] hover:bg-[#4632e1] hover:text-white"  mat-button *ngFor="let tab of pageTabs; let i = index" (click)="selectTab(i)" >{{tab}}</button>
     </div>
     </mat-drawer>
     <div class="example-sidenav-content p-4 rounded-lg ml-2 bg-[#e3e3e3]  shadow-xl flex justify-between">
@@ -12,7 +12,7 @@
        <mat-icon>menu</mat-icon>
        </button>
 
-       <p class="font-extralight text-[#221a36] pr-4 text-xl">{{currentTab}}</p> 
+       <p class="font-light text-[#221a36] pr-4 text-xl">{{currentTab}}</p> 
     </div>
     
     <div *ngIf="currentTab === 'Releases Notes'" class="">
